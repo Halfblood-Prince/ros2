@@ -15,7 +15,7 @@ def generate_launch_description():
             cmd=[
                 'gazebo',
                 '--verbose',
-                pkg_path + '/worlds/simple.world',
+                pkg_path + '/worlds/environment.world',
                 '-s', 'libgazebo_ros_factory.so'
             ],
             output='screen'
