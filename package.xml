@@ -1,14 +1,13 @@
-<?xml version="1.0"?>
 <package format="3">
-  <name>ros2</name>
-  <version>0.0.0</version>
-  <description>cuboid robot with lidar</description>
+<name>ros2</name>
+<version>0.0.1</version>
+<description>production cuboid robot</description>
 
-  <maintainer email="you@example.com">you</maintainer>
-  <license>Apache-2.0</license>
+<maintainer email="a@b.com">user</maintainer>
+<license>Apache-2.0</license>
 
-  <depend>rclpy</depend>
-  <depend>geometry_msgs</depend>
-  <depend>gazebo_ros</depend>
+<depend>rclpy</depend>
+<depend>geometry_msgs</depend>
+<depend>gazebo_ros</depend>
 
 </package>

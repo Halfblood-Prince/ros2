@@ -1,47 +1,23 @@
 <?xml version="1.0"?>
 <robot name="cuboid_bot">
 
-  <!-- ================= BASE ================= -->
   <link name="base_link">
-
     <visual>
-      <geometry>
-        <box size="0.5 0.3 0.2"/>
-      </geometry>
-      <material>
-        <color rgba="0.2 0.4 0.8 1"/>
-      </material>
+      <geometry><box size="0.5 0.3 0.2"/></geometry>
     </visual>
-
     <collision>
-      <geometry>
-        <box size="0.5 0.3 0.2"/>
-      </geometry>
+      <geometry><box size="0.5 0.3 0.2"/></geometry>
     </collision>
-
     <inertial>
-      <mass value="2.0"/>
-      <inertia ixx="0.01" iyy="0.01" izz="0.01"
-               ixy="0" ixz="0" iyz="0"/>
+      <mass value="2"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
     </inertial>
-
   </link>
 
-  <!-- ================= LIDAR ================= -->
   <link name="lidar_link">
-
     <visual>
-      <geometry>
-        <cylinder radius="0.05" length="0.05"/>
-      </geometry>
+      <geometry><cylinder radius="0.05" length="0.05"/></geometry>
     </visual>
-
-    <collision>
-      <geometry>
-        <cylinder radius="0.05" length="0.05"/>
-      </geometry>
-    </collision>
-
   </link>
 
   <joint name="lidar_joint" type="fixed">
@@ -50,12 +26,9 @@
     <origin xyz="0 0 0.15"/>
   </joint>
 
-  <!-- ================= GAZEBO: LIDAR SENSOR ================= -->
+  <!-- Gazebo LiDAR -->
   <gazebo reference="lidar_link">
-    <sensor type="ray" name="lidar_sensor">
-
-      <update_rate>10</update_rate>
-
+    <sensor type="ray" name="lidar">
       <ray>
         <scan>
           <horizontal>
@@ -64,38 +37,23 @@
             <max_angle>3.14</max_angle>
           </horizontal>
         </scan>
-
         <range>
           <min>0.1</min>
-          <max>10.0</max>
+          <max>10</max>
         </range>
       </ray>
 
       <plugin name="gazebo_ros_laser" filename="libgazebo_ros_ray_sensor.so">
-        <ros>
-          <topic_name>/scan</topic_name>
-        </ros>
+        <topic_name>/scan</topic_name>
       </plugin>
-
     </sensor>
   </gazebo>
 
-  <!-- ================= MOVEMENT (NO WHEELS) ================= -->
-  <!-- This gives x, y, yaw control via cmd_vel -->
+  <!-- planar motion plugin -->
   <gazebo>
     <plugin name="planar_move" filename="libgazebo_ros_planar_move.so">
-
-      <ros>
-        <namespace>/</namespace>
-        <remapping>cmd_vel:=cmd_vel</remapping>
-      </ros>
-
       <command_topic>cmd_vel</command_topic>
-
       <odometry_topic>odom</odometry_topic>
-
-      <update_rate>50</update_rate>
-
     </plugin>
   </gazebo>
 

@@ -5,35 +5,24 @@ import os
 
 def generate_launch_description():
 
-    pkg_path = os.path.join(
-        os.getenv('HOME'), 'ros2_ws/src/ros2'
-    )
+    pkg = os.path.join(os.getenv('HOME'),'ros2_pro_ws/src/ros2')
 
     return LaunchDescription([
 
         ExecuteProcess(
-            cmd=[
-                'gazebo',
-                '--verbose',
-                pkg_path + '/worlds/environment.world',
-                '-s', 'libgazebo_ros_factory.so'
-            ],
+            cmd=['gazebo','--verbose', pkg+'/worlds/env.world','-s','libgazebo_ros_factory.so'],
             output='screen'
         ),
 
         Node(
             package='gazebo_ros',
             executable='spawn_entity.py',
-            arguments=[
-                '-entity', 'cuboid_bot',
-                '-file', pkg_path + '/urdf/cuboid_bot.urdf.xacro'
-            ],
+            arguments=['-entity','cuboid_bot','-file',pkg+'/urdf/cuboid_bot.urdf'],
             output='screen'
         ),
 
         Node(
             package='ros2',
-            executable='teleop_wasd',
-            output='screen'
-        ),
+            executable='teleop_wasd'
+        )
     ])
