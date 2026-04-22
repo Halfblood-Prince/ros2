@@ -1,13 +1,32 @@
+<?xml version="1.0"?>
 <package format="3">
-<name>ros2</name>
-<version>0.0.1</version>
-<description>production cuboid robot</description>
 
-<maintainer email="a@b.com">user</maintainer>
-<license>Apache-2.0</license>
+  <name>ros2</name>
+  <version>0.0.1</version>
+  <description>
+    Cuboid robot in Gazebo with LiDAR, WASD control, and SLAM-ready setup.
+  </description>
 
-<depend>rclpy</depend>
-<depend>geometry_msgs</depend>
-<depend>gazebo_ros</depend>
+  <maintainer email="you@example.com">you</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- ================= BUILD SYSTEM ================= -->
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <!-- ================= CORE ROS2 ================= -->
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+
+  <!-- ================= GAZEBO INTEGRATION ================= -->
+  <depend>gazebo_ros</depend>
+  <depend>gazebo_plugins</depend>
+
+  <!-- ================= OPTIONAL (RECOMMENDED FOR YOUR PROJECT) ================= -->
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+  <!-- ================= VISUALIZATION ================= -->
+  <exec_depend>rviz2</exec_depend>
 
 </package>
